@@ -22,7 +22,7 @@ object AuthModule {
     @Singleton
     fun provideAuthApi(): AuthApi {
         return Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/") // Для эмулятора Android → localhost
+            .baseUrl("http://192.168.1.150:8080/") // Для эмулятора Android → localhost
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(AuthApi::class.java)
