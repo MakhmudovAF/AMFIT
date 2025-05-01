@@ -1,0 +1,9 @@
+<resources>
+    <string name="home">Home</string>
+    <string name="hi_user">Hi,\u0020</string>
+    <string name="sub_greeting">Welcome to AMFIT App</string>
+    <string name="daily_steps">Daily steps</string>
+    <string name="day_working_out">Day working out</string>
+    <string name="completed_workouts">Completed workouts</string>
+    <string name="there_are_no_completed_workouts">There are no completed workouts</string>
+</resources>

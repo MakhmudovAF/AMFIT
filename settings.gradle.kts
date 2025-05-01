@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "AMFIT"
 include(":app")
+include(":feature_auth")
+include(":core")
+include(":feature_home")
