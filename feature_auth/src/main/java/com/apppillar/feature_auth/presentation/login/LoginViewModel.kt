@@ -35,9 +35,10 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             val result = loginUserUseCase(email, password)
             if (result.isSuccess) {
-                val token = result.getOrNull()
-                if (token != null) {
-                    tokenDataStore.saveToken(token)
+                val data = result.getOrNull()
+                if (data != null) {
+                    tokenDataStore.saveToken(data.token)
+                    tokenDataStore.saveUsername(data.username)
                 }
                 _uiState.value = LoginUiState.Success
             } else {

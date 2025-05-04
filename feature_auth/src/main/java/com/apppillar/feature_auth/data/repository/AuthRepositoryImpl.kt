@@ -3,6 +3,7 @@ package com.apppillar.feature_auth.data.repository
 import com.apppillar.feature_auth.data.remote.AuthApi
 import com.apppillar.feature_auth.data.remote.dto.ForgotPasswordRequestDto
 import com.apppillar.feature_auth.data.remote.dto.LoginRequestDto
+import com.apppillar.feature_auth.data.remote.dto.LoginResponseDto
 import com.apppillar.feature_auth.data.remote.dto.RegisterRequestDto
 import com.apppillar.feature_auth.domain.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
@@ -22,43 +23,23 @@ class AuthRepositoryImpl(
                 val response = api.register(RegisterRequestDto(username, email, password))
                 if (response.isSuccessful) {
                     Result.success(Unit)
-                } else {
-                    val message = when (response.code()) {
-                        400 -> "Неверные данные. Проверьте поля"
-                        409 -> "Email уже зарегистрирован"
-                        500 -> "Ошибка сервера, попробуйте позже"
-                        else -> "Ошибка: ${response.code()}"
-                    }
-                    Result.failure(Exception(message))
-                }
+                } else Result.failure(Exception(handleError(response.code())))
             } catch (e: Exception) {
                 Result.failure(Exception("Нет подключения к серверу"))
             }
         }
     }
 
-    override suspend fun login(email: String, password: String): Result<String> {
+    override suspend fun login(email: String, password: String): Result<LoginResponseDto> {
         return withContext(Dispatchers.IO) {
             try {
                 val response = api.login(LoginRequestDto(email, password))
                 if (response.isSuccessful) {
-                    val token = response.body()?.token
-                    if (!token.isNullOrBlank()) {
-                        Result.success(token)
-                    } else {
-                        Result.failure(Exception("Пустой токен"))
-                    }
+                    val data = response.body()
+                    if (data != null) Result.success(data)
+                    else Result.failure(Exception("Пустой токен"))
                 } else {
-                    val message = when (response.code()) {
-                        400 -> "Некорректный запрос"
-                        401 -> "Неверный email или пароль"
-                        403 -> "Нет доступа"
-                        404 -> "Пользователь не найден"
-                        409 -> "Пользователь с таким email уже зарегистрирован"
-                        500 -> "Ошибка сервера"
-                        else -> "Ошибка: ${response.code()}"
-                    }
-                    Result.failure(Exception(message))
+                    Result.failure(Exception(handleError(response.code())))
                 }
             } catch (e: Exception) {
                 Result.failure(Exception("Нет подключения к серверу"))
@@ -72,18 +53,19 @@ class AuthRepositoryImpl(
                 val response = api.forgotPassword(ForgotPasswordRequestDto(email))
                 if (response.isSuccessful) {
                     Result.success(Unit)
-                } else {
-                    val message = when (response.code()) {
-                        400 -> "Некорректный email"
-                        404 -> "Пользователь с таким email не найден"
-                        500 -> "Ошибка сервера"
-                        else -> "Ошибка: ${response.code()}"
-                    }
-                    Result.failure(Exception(message))
-                }
+                } else Result.failure(Exception(handleError(response.code())))
             } catch (e: Exception) {
                 Result.failure(Exception("Нет подключения к серверу"))
             }
         }
+    }
+
+    private fun handleError(code: Int): String = when (code) {
+        400 -> "Неверные данные"
+        401 -> "Неверный email или пароль"
+        404 -> "Пользователь не найден"
+        409 -> "Email уже зарегистрирован"
+        500 -> "Ошибка сервера"
+        else -> "Ошибка: $code"
     }
 }

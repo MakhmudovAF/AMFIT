@@ -1,5 +1,6 @@
 package com.apppillar.feature_auth.data.remote.dto
 
 data class LoginResponseDto(
-    val token: String
+    val token: String,
+    val username: String
 )

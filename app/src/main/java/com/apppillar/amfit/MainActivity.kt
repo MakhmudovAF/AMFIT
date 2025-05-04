@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.apppillar.amfit.databinding.ActivityMainBinding
 import com.apppillar.core.data.TokenDataStore
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,11 +30,12 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         var isTokenChecked = false
         splashScreen.setKeepOnScreenCondition { !isTokenChecked }
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -42,11 +44,14 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             val token = tokenDataStore.token.firstOrNull()
-            val graph = findNavController(R.id.fragment_container_view).navInflater.inflate(R.navigation.nav_graph)
+            val navHostFragment = supportFragmentManager
+                .findFragmentById(R.id.fragment_container_view) as NavHostFragment
+            val navController = navHostFragment.navController
+            val graph = navController.navInflater.inflate(R.navigation.nav_graph)
             graph.setStartDestination(
                 if (!token.isNullOrBlank()) R.id.homeFragment else com.apppillar.feature_auth.R.id.auth_nav_graph
             )
-            findNavController(R.id.fragment_container_view).graph = graph
+            navController.graph = graph
             delay(1)
             isTokenChecked = true
         }
