@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,9 @@ import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.ZoneId
 import androidx.core.view.get
+import kotlinx.coroutines.flow.combine
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -86,6 +90,13 @@ class HomeFragment : Fragment() {
             viewModel.isDateFiltered.collectLatest { filtered ->
                 val menu = binding.materialToolbar.menu
                 menu.findItem(R.id.action_reset_filter)?.isVisible = filtered
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.selectedDate.collectLatest { date ->
+                val menu = binding.materialToolbar.menu
+                menu.findItem(R.id.text_select_date)?.title = date.toString()
             }
         }
     }

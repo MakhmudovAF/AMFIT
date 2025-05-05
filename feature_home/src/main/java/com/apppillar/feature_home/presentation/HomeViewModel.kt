@@ -97,13 +97,17 @@ class HomeViewModel @Inject constructor(
 
     fun addDummyWorkout() {
         viewModelScope.launch {
-            val workout = CompletedWorkout(
-                id = UUID.randomUUID().toString(),
-                title = "Тестовая тренировка",
-                duration = 40,
-                date = "2025-05-05"
-            )
-            addCompletedWorkoutUseCase(workout)
+            for (i in 1..5) {
+                for (j in 1..i) {
+                    val workout = CompletedWorkout(
+                        id = UUID.randomUUID().toString(),
+                        title = "Тестовая тренировка",
+                        duration = 40 + j,
+                        date = "2025-05-0$i"
+                    )
+                    addCompletedWorkoutUseCase(workout)
+                }
+            }
         }
     }
 
@@ -145,6 +149,7 @@ class HomeViewModel @Inject constructor(
 
     fun resetDateFilter() {
         _isDateFiltered.value = false
+        _selectedDate.value = LocalDate.now()
         observeHomeData()
     }
 
