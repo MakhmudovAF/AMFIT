@@ -3,7 +3,6 @@ package com.apppillar.feature_home.di
 import android.content.Context
 import androidx.room.Room
 import com.apppillar.feature_home.data.local.HomeDatabase
-import com.apppillar.feature_home.data.local.dao.CompletedWorkoutsDao
 import com.apppillar.feature_home.data.local.dao.DailyStepsDao
 import dagger.Module
 import dagger.Provides
@@ -23,8 +22,8 @@ object HomeModule {
     @Provides
     fun provideDailyStepsDao(db: HomeDatabase): DailyStepsDao = db.stepDao()
 
-    @Provides
-    fun provideCompletedWorkoutsDao(db: HomeDatabase): CompletedWorkoutsDao = db.trainingDao()
+    /*@Provides
+    fun provideCompletedWorkoutsDao(db: HomeDatabase): CompletedWorkoutsDao = db.trainingDao()*/
 
     @Provides
     @Singleton

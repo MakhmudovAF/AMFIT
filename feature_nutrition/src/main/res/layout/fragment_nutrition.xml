@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 🧭 Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/material_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_scrollEffect="compress"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:menu="@menu/menu_nutrition"
+            app:title="Nutrition" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--&lt;!&ndash; Дата &ndash;&gt;
+            <TextView
+                android:id="@+id/textViewDate"
+                android:text="Сегодня"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />-->
+
+            <!-- Калории -->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Calories" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressCalories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="2500" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textCaloriesSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 / 2500 ккал" />
+
+            <!-- Белки -->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Protein" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressProtein"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="150" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textProteinSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 / 150 г" />
+
+            <!-- Жиры -->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Fat" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressFat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textFatSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 / 100 г" />
+
+            <!-- Углеводы -->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Carbs" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressCarbs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="300" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textCarbsSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 / 300 г" />
+
+            <!-- Контейнеры приёмов пищи -->
+            <include
+                android:id="@+id/containerBreakfast"
+                layout="@layout/item_meal_container" />
+
+            <include
+                android:id="@+id/containerLunch"
+                layout="@layout/item_meal_container" />
+
+            <include
+                android:id="@+id/containerDinner"
+                layout="@layout/item_meal_container" />
+
+            <include
+                android:id="@+id/containerSnack"
+                layout="@layout/item_meal_container" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

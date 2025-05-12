@@ -2,10 +2,8 @@ package com.apppillar.feature_home.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.apppillar.core.data.TokenDataStore
-import com.apppillar.feature_home.domain.model.CompletedWorkout
+import com.apppillar.core.storage.DataStorePrefs
 import com.apppillar.feature_home.domain.model.HomeState
-import com.apppillar.feature_home.domain.usecase.AddCompletedWorkoutUseCase
 import com.apppillar.feature_home.domain.usecase.GetCompletedWorkoutsUseCase
 import com.apppillar.feature_home.domain.usecase.GetDailyStepsUseCase
 import com.apppillar.feature_home.domain.usecase.GetGoalsUseCase
@@ -23,12 +21,11 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val addCompletedWorkoutUseCase: AddCompletedWorkoutUseCase,
+    //private val addCompletedWorkoutUseCase: AddCompletedWorkoutUseCase,
     private val getDailyStepsUseCase: GetDailyStepsUseCase,
     private val getCompletedWorkoutsUseCase: GetCompletedWorkoutsUseCase,
     private val getStepsForDate: GetStepsForDate,
@@ -36,7 +33,7 @@ class HomeViewModel @Inject constructor(
     private val getWeeklyCompletedWorkoutsUseCase: GetWeeklyCompletedWorkoutsUseCase,
     private val getGoalsUseCase: GetGoalsUseCase,
     private val saveGoalUseCase: SaveGoalUseCase,
-    private val tokenDataStore: TokenDataStore
+    private val dataStorePrefs: DataStorePrefs
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeState())
@@ -58,7 +55,7 @@ class HomeViewModel @Inject constructor(
         observeJob?.cancel()
         observeJob = viewModelScope.launch {
             val goals = getGoalsUseCase()
-            val username = tokenDataStore.username.firstOrNull() ?: "Пользователь"
+            val username = dataStorePrefs.username.firstOrNull() ?: "Пользователь"
 
             combine(
                 getDailyStepsUseCase(),
@@ -95,7 +92,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun addDummyWorkout() {
+    /*fun addDummyWorkout() {
         viewModelScope.launch {
             for (i in 1..5) {
                 for (j in 1..i) {
@@ -109,7 +106,7 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
-    }
+    }*/
 
     fun selectDate(date: LocalDate) {
         _selectedDate.value = date
@@ -120,7 +117,7 @@ class HomeViewModel @Inject constructor(
         observeJob?.cancel()
         _isDateFiltered.value = true
         observeJob = viewModelScope.launch {
-            val username = tokenDataStore.username.firstOrNull() ?: "Пользователь"
+            val username = dataStorePrefs.username.firstOrNull() ?: "Пользователь"
             val formattedDate = date.toString()
 
             val stepsFlow = getStepsForDate(formattedDate)

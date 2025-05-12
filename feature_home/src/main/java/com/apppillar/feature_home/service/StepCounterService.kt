@@ -16,7 +16,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.edit
 import com.apppillar.feature_home.R
 import com.apppillar.feature_home.data.local.dao.DailyStepsDao
-import com.apppillar.feature_home.data.local.model.DailyStepsEntity
+import com.apppillar.feature_home.data.local.entity.DailyStepsEntity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

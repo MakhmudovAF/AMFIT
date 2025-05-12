@@ -2,7 +2,7 @@ package com.apppillar.feature_auth.presentation.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.apppillar.core.data.TokenDataStore
+import com.apppillar.core.storage.DataStorePrefs
 import com.apppillar.feature_auth.domain.usecase.RegisterUserUseCase
 import com.apppillar.feature_auth.domain.validation.RegisterValidator
 import com.apppillar.feature_auth.presentation.register.state.RegisterUiState
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val registerUserUseCase: RegisterUserUseCase,
-    private val tokenDataStore: TokenDataStore
+    private val dataStorePrefs: DataStorePrefs
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<RegisterUiState>(RegisterUiState.Idle)
@@ -33,7 +33,7 @@ class RegisterViewModel @Inject constructor(
         viewModelScope.launch {
             val result = registerUserUseCase(name, email, password)
             _uiState.value = if (result.isSuccess) {
-                tokenDataStore.saveUsername(name)
+                dataStorePrefs.saveUsername(name)
                 RegisterUiState.Success
             } else {
                 RegisterUiState.Error(result.exceptionOrNull()?.message ?: "Неизвестная ошибка")

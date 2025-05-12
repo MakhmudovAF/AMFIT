@@ -4,6 +4,7 @@ plugins {
 
     id("org.jetbrains.kotlin.kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -42,6 +43,9 @@ android {
 dependencies {
 
     implementation(project(":core"))
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 

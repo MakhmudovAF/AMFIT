@@ -4,15 +4,19 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.apppillar.core.storage.DataStorePrefs
 import com.apppillar.feature_home.R
 import com.apppillar.feature_home.databinding.FragmentHomeBinding
 import com.apppillar.feature_home.presentation.adapter.CompletedWorkoutAdapter
@@ -29,10 +33,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.ZoneId
-import androidx.core.view.get
-import kotlinx.coroutines.flow.combine
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -45,8 +46,17 @@ class HomeFragment : Fragment() {
     private lateinit var completedWorkoutAdapter: CompletedWorkoutAdapter
     private lateinit var concatAdapter: ConcatAdapter
 
+    @Inject
+    lateinit var dataStorePrefs: DataStorePrefs
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        lifecycleScope.launch {
+            if (!dataStorePrefs.isProfileSet()) {
+                findNavController().navigate("amfit://userProfile".toUri())
+            }
+        }
     }
 
     override fun onCreateView(
@@ -64,11 +74,11 @@ class HomeFragment : Fragment() {
         startStepCounterService()
         observeUiState()
 
-        binding.materialToolbar.setNavigationOnClickListener {
-            viewModel.addDummyWorkout()
+        /*binding.materialToolbar.setNavigationOnClickListener {
+            //viewModel.addDummyWorkout()
             Snackbar.make(binding.root, "Добавлена тестовая тренировка", Snackbar.LENGTH_SHORT)
                 .show()
-        }
+        }*/
 
         binding.materialToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -86,17 +96,21 @@ class HomeFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.isDateFiltered.collectLatest { filtered ->
-                val menu = binding.materialToolbar.menu
-                menu.findItem(R.id.action_reset_filter)?.isVisible = filtered
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isDateFiltered.collectLatest { filtered ->
+                    val menu = binding.materialToolbar.menu
+                    menu.findItem(R.id.action_reset_filter)?.isVisible = filtered
+                }
             }
         }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.selectedDate.collectLatest { date ->
-                val menu = binding.materialToolbar.menu
-                menu.findItem(R.id.text_select_date)?.title = date.toString()
+        lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.selectedDate.collectLatest { date ->
+                    val menu = binding.materialToolbar.menu
+                    menu.findItem(R.id.text_select_date)?.title = date.toString()
+                }
             }
         }
     }
@@ -120,7 +134,11 @@ class HomeFragment : Fragment() {
             onDailyStepsClick = { showGoalInputDialog(GoalType.DAILY_STEPS) },
             onCompletedWorkoutsClick = { showGoalInputDialog(GoalType.COMPLETED_WORKOUTS) }
         )
-        completedWorkoutAdapter = CompletedWorkoutAdapter()
+        completedWorkoutAdapter = CompletedWorkoutAdapter { workout ->
+            val action = HomeFragmentDirections
+                .actionHomeFragmentToCompletedWorkoutDetailFragment(workout.id.toLong())
+            findNavController().navigate(action)
+        }
 
         concatAdapter = ConcatAdapter(homeHeaderAdapter, completedWorkoutAdapter)
 
@@ -131,15 +149,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeUiState() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.state.collectLatest { state ->
-                homeHeaderAdapter.submitState(state)
-                completedWorkoutAdapter.submitList(state.completedWorkouts)
+        lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collectLatest { state ->
+                    homeHeaderAdapter.submitState(state)
+                    completedWorkoutAdapter.submitList(state.completedWorkouts)
 
-                // ПОЗДРАВЛЕНИЕ
-                state.goalAchievedMessage?.let { message ->
-                    Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
-                    viewModel.clearGoalMessage()
+                    state.goalAchievedMessage?.let { message ->
+                        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+                        viewModel.clearGoalMessage()
+                    }
                 }
             }
         }

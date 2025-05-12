@@ -1,3 +1,4 @@
+/*
 package com.apppillar.feature_home.domain.usecase
 
 import com.apppillar.feature_home.domain.model.CompletedWorkout
@@ -10,4 +11,4 @@ class AddCompletedWorkoutUseCase @Inject constructor(
     suspend operator fun invoke(workout: CompletedWorkout) {
         repository.addCompletedWorkout(workout)
     }
-}
+}*/

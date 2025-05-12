@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.apppillar.feature_home.data.local.model.DailyStepsEntity
+import com.apppillar.feature_home.data.local.entity.DailyStepsEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -16,8 +16,7 @@
             android:minHeight="?attr/actionBarSize"
             app:layout_scrollEffect="compress"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:menu="@menu/menu_button"
-            app:navigationIcon="@drawable/ic_baseline_directions_walk_24"
+            app:menu="@menu/menu_toolbar"
             app:title="@string/home" />
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface CompletedWorkoutsRepository {
     fun getCompletedWorkouts(): Flow<List<CompletedWorkout>>
     fun getWeeklyWorkoutCount(): Flow<Int>
-    suspend fun addCompletedWorkout(completedWorkout: CompletedWorkout)
+    //suspend fun addCompletedWorkout(completedWorkout: CompletedWorkout)
     fun getWorkoutsForDate(date: String): Flow<List<CompletedWorkout>>
 }

@@ -4,6 +4,8 @@ plugins {
 
     id("org.jetbrains.kotlin.kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -46,6 +48,13 @@ dependencies {
 
     implementation(project(":feature_auth"))
     implementation(project(":feature_home"))
+    implementation(project(":feature_workout_list"))
+    implementation(project(":feature_workout_create"))
+    implementation(project(":feature_workout_edit"))
+    implementation(project(":feature_workout_start"))
+    implementation(project(":feature_exercise_select"))
+    implementation(project(":feature_nutrition"))
+    implementation(project(":feature_profile"))
     implementation(project(":core"))
 
     implementation("androidx.core:core-splashscreen:1.0.1")

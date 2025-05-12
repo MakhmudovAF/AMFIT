@@ -2,7 +2,7 @@ package com.apppillar.feature_auth.presentation.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.apppillar.core.data.TokenDataStore
+import com.apppillar.core.storage.DataStorePrefs
 import com.apppillar.feature_auth.domain.usecase.ForgotPasswordUseCase
 import com.apppillar.feature_auth.domain.usecase.LoginUserUseCase
 import com.apppillar.feature_auth.domain.validation.LoginValidator
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginUserUseCase: LoginUserUseCase,
     private val forgotPasswordUseCase: ForgotPasswordUseCase,
-    private val tokenDataStore: TokenDataStore
+    private val dataStorePrefs: DataStorePrefs
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<LoginUiState>(LoginUiState.Idle)
@@ -37,8 +37,8 @@ class LoginViewModel @Inject constructor(
             if (result.isSuccess) {
                 val data = result.getOrNull()
                 if (data != null) {
-                    tokenDataStore.saveToken(data.token)
-                    tokenDataStore.saveUsername(data.username)
+                    dataStorePrefs.saveToken(data.token)
+                    dataStorePrefs.saveUsername(data.username)
                 }
                 _uiState.value = LoginUiState.Success
             } else {
