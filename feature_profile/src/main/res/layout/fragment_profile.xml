@@ -4,40 +4,46 @@
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:padding="16dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:spacing="16dp">
 
-        <!-- Заголовок -->
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewUsername"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Привет, Пользователь!"
-            android:textAppearance="?attr/textAppearanceHeadlineSmall"
-            android:textAlignment="center"
-            android:layout_marginBottom="24dp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textViewCompletedWorkouts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Завершённых тренировок: 0"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp"
-            android:textColor="?android:textColorPrimary"/>
+            <!-- Заголовок -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:text="Пользователь!" />
+
+            <TextView
+                android:id="@+id/textViewCompletedWorkouts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@string/completed_workouts" />
+        </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabWorkoutStats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="fixed" />
+            android:layout_marginTop="16dp"
+            app:tabGravity="center"
+            app:tabMode="auto" />
 
         <!-- График тренировок -->
         <com.github.mikephil.charting.charts.LineChart
@@ -50,7 +56,8 @@
             android:id="@+id/tabNutritionStats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="scrollable" />
+            app:tabGravity="center"
+            app:tabMode="auto" />
 
         <!-- График калорий -->
         <com.github.mikephil.charting.charts.LineChart
@@ -70,15 +77,15 @@
             android:id="@+id/switchTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Тёмная тема" />
+            android:text="@string/dark_theme" />
 
         <!-- Кнопка редактирования профиля -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonEditProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Изменить профиль"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:text="@string/change_profile" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

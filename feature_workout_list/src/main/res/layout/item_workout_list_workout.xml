@@ -41,7 +41,7 @@
             android:id="@+id/workoutStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start" />
+            android:text="@string/start" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -20,7 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:hint="Weight (kg)"
+        android:hint="@string/weight"
         android:inputType="numberDecimal" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:hint="Reps"
+        android:hint="@string/reps"
         android:inputType="number" />
 
     <ImageButton

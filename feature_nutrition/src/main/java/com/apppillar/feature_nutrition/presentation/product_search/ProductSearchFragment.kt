@@ -12,7 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.apppillar.core.ResourcesProvider
 import com.apppillar.core.model.ProductSelection
+import com.apppillar.feature_nutrition.R
 import com.apppillar.feature_nutrition.databinding.FragmentProductSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -60,7 +62,7 @@ class ProductSearchFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = ProductAdapter { product ->
+        adapter = ProductAdapter(ResourcesProvider(requireContext())) { product ->
             //showInputDialog(product)
             val selection = ProductSelection(
                 name = product.name,
@@ -87,7 +89,7 @@ class ProductSearchFragment : Fragment() {
     private fun observeCategories() {
         lifecycleScope.launch {
             viewModel.categories.collect { categories ->
-                val list = listOf("Все категории") + categories
+                val list = listOf(getString(R.string.all_categories)) + categories
                 val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list)
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinnerCategory.adapter = spinnerAdapter

@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.apppillar.core.ResourcesProvider
 import com.apppillar.core.model.ExerciseSelect
 import com.apppillar.feature_workout_start.databinding.FragmentWorkoutStartBinding
 import com.apppillar.feature_workout_start.domain.model.Exercise
@@ -87,6 +88,7 @@ class WorkoutStartFragment : Fragment() {
 
     private fun setupAdapters() {
         exerciseAdapter = WorkoutStartExerciseAdapter(
+            ResourcesProvider(requireContext()),
             onDeleteExercise = viewModel::deleteExercise,
             onAddSet = viewModel::addSetToExercise,
             onDeleteSet = viewModel::deleteSetFromExercise,
@@ -150,16 +152,16 @@ class WorkoutStartFragment : Fragment() {
         val secondsInput = dialogView.findViewById<EditText>(R.id.editText_seconds)
 
         AlertDialog.Builder(requireContext())
-            .setTitle("Set Rest Duration")
+            .setTitle(getString(R.string.set_rest_duration))
             .setView(dialogView)
-            .setPositiveButton("OK") { _, _ ->
+            .setPositiveButton(getString(R.string.ok)) { _, _ ->
                 val minutes = minutesInput.text.toString().toIntOrNull() ?: 0
                 val seconds = secondsInput.text.toString().toIntOrNull() ?: 0
                 val total = minutes * 60 + seconds
                 viewModel.setRestDuration(exerciseId, total)
                 viewModel.updateRestTimerDisplay(exerciseId, total)
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
 

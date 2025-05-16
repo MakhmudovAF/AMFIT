@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.apppillar.feature_home.R
 import com.apppillar.feature_home.databinding.ItemCompletedWorkoutBinding
 import com.apppillar.feature_home.domain.model.CompletedWorkout
 import java.text.SimpleDateFormat
@@ -12,6 +13,7 @@ import java.util.Date
 import java.util.Locale
 
 class CompletedWorkoutAdapter(
+    private val resourcesProvider: com.apppillar.core.ResourcesProvider,
     private val onClick: (CompletedWorkout) -> Unit
 ) : ListAdapter<CompletedWorkout, CompletedWorkoutAdapter.WorkoutViewHolder>(DiffCallback) {
 
@@ -32,8 +34,8 @@ class CompletedWorkoutAdapter(
 
         fun bind(workout: CompletedWorkout) {
             binding.materialTextViewTitle.text = workout.title
-            binding.materialTextViewDuration.text = workout.duration
-            binding.materialTextViewDate.text = workout.date
+            binding.materialTextViewDuration.text = resourcesProvider.getString(R.string.duration) + workout.duration
+            binding.materialTextViewDate.text = resourcesProvider.getString(R.string.date) + workout.date
 
             binding.root.setOnClickListener {
                 onClick(workout)

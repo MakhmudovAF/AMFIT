@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.apppillar.core.ResourcesProvider
 import com.apppillar.core.database.entity.MealType
 import com.apppillar.core.model.ProductSelection
 import com.apppillar.feature_nutrition.R
@@ -120,7 +121,7 @@ class NutritionFragment : Fragment() {
 
     private fun showDatePicker() {
         val picker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Выберите дату")
+            .setTitleText(getString(R.string.choose_date))
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
 
@@ -136,15 +137,15 @@ class NutritionFragment : Fragment() {
     }
 
     private fun setupAdapters() {
-        breakfastAdapter = MealProductAdapter { id -> viewModel.deleteMealProduct(id) }
-        lunchAdapter = MealProductAdapter { id -> viewModel.deleteMealProduct(id) }
-        dinnerAdapter = MealProductAdapter { id -> viewModel.deleteMealProduct(id) }
-        snackAdapter = MealProductAdapter { id -> viewModel.deleteMealProduct(id) }
+        breakfastAdapter = MealProductAdapter(ResourcesProvider(requireContext())) { id -> viewModel.deleteMealProduct(id) }
+        lunchAdapter = MealProductAdapter(ResourcesProvider(requireContext())) { id -> viewModel.deleteMealProduct(id) }
+        dinnerAdapter = MealProductAdapter(ResourcesProvider(requireContext())) { id -> viewModel.deleteMealProduct(id) }
+        snackAdapter = MealProductAdapter(ResourcesProvider(requireContext())) { id -> viewModel.deleteMealProduct(id) }
 
-        binding.containerBreakfast.textMealType.text = "Завтрак"
-        binding.containerLunch.textMealType.text = "Обед"
-        binding.containerDinner.textMealType.text = "Ужин"
-        binding.containerSnack.textMealType.text = "Перекус"
+        binding.containerBreakfast.textMealType.text = getString(R.string.breakfast)
+        binding.containerLunch.textMealType.text = getString(R.string.lunch)
+        binding.containerDinner.textMealType.text = getString(R.string.dinner)
+        binding.containerSnack.textMealType.text = getString(R.string.snack)
 
 
         binding.containerBreakfast.recyclerViewMealProducts.layoutManager = LinearLayoutManager(requireContext())
@@ -210,13 +211,13 @@ class NutritionFragment : Fragment() {
                             binding.progressCarbs.progress = state.summary.carbs.toInt()
 
                             binding.textCaloriesSummary.text =
-                                "${state.summary.calories} / ${target.calories} ккал"
+                                "${state.summary.calories} / ${target.calories} " + getString(R.string.calories)
                             binding.textProteinSummary.text =
-                                "${state.summary.protein.toInt()} / ${target.proteinGrams} г"
+                                "${state.summary.protein.toInt()} / ${target.proteinGrams} " + getString(R.string.g)
                             binding.textFatSummary.text =
-                                "${state.summary.fat.toInt()} / ${target.fatGrams} г"
+                                "${state.summary.fat.toInt()} / ${target.fatGrams} " + getString(R.string.g)
                             binding.textCarbsSummary.text =
-                                "${state.summary.carbs.toInt()} / ${target.carbsGrams} г"
+                                "${state.summary.carbs.toInt()} / ${target.carbsGrams} " + getString(R.string.g)
                         }
                     }
             }

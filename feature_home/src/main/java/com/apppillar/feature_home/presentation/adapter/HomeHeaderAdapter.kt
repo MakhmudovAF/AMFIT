@@ -3,11 +3,13 @@ package com.apppillar.feature_home.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.apppillar.feature_home.R
 import com.apppillar.feature_home.databinding.HomeRecyclerViewHeaderBinding
 import com.apppillar.feature_home.domain.model.HomeState
 import java.util.Calendar
 
 class HomeHeaderAdapter(
+    private val resourcesProvider: com.apppillar.core.ResourcesProvider,
     private val onDailyStepsClick: () -> Unit,
     private val onCompletedWorkoutsClick: () -> Unit
 ) : RecyclerView.Adapter<HomeHeaderAdapter.ViewHolder>() {
@@ -72,10 +74,10 @@ class HomeHeaderAdapter(
     private fun getGreeting(name: String): String {
         val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         return when (hour) {
-            in 5..11 -> "Good Morning, $name!"
-            in 12..17 -> "Good Afternoon, $name!"
-            in 18..22 -> "Good Evening, $name!"
-            else -> "Good Night, $name!"
+            in 5..11 -> resourcesProvider.getString(R.string.good_morning) + "$name!"
+            in 12..17 -> resourcesProvider.getString(R.string.good_afternoon) + "$name!"
+            in 18..22 -> resourcesProvider.getString(R.string.good_evening) + "$name!"
+            else -> resourcesProvider.getString(R.string.good_night) + "$name!"
         }
     }
 }

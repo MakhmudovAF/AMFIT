@@ -1,6 +1,5 @@
 package com.apppillar.feature_workout_edit
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +9,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import com.apppillar.core.ResourcesProvider
 import com.apppillar.feature_workout_edit.domain.model.Exercise
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
 class WorkoutEditExerciseAdapter(
+    private val resourcesProvider: ResourcesProvider,
     private val onDeleteExercise: (Long) -> Unit,
     private val onAddSet: (Long) -> Unit,
     private val onDeleteSet: (Long, Long) -> Unit,
@@ -63,12 +64,10 @@ class WorkoutEditExerciseAdapter(
             deleteBtn.setOnClickListener { onDeleteExercise(exercise.id) }
             addSetBtn.setOnClickListener { onAddSet(exercise.id) }
 
-            Log.e("TAG", "bind: ${exercise.restDurationSeconds}", )
-
             // Отображение restDurationSeconds без подписки
             val min = exercise.restDurationSeconds / 60
             val sec = exercise.restDurationSeconds % 60
-            restTimerText.text = "Rest Timer: ${min}m ${sec}s"
+            restTimerText.text = resourcesProvider.getString(R.string.rest_timer) + "${min}m ${sec}s"
 
             // Установка новой длительности по клику
             restTimerText.setOnClickListener {

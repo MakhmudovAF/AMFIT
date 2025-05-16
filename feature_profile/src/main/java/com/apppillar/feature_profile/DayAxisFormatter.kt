@@ -1,6 +1,5 @@
 package com.apppillar.feature_profile
 
-import android.util.Log
 import com.github.mikephil.charting.formatter.ValueFormatter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -13,7 +12,6 @@ class DayAxisFormatter(private val startDate: LocalDate) : ValueFormatter() {
         val date = startDate.plusDays(index.toLong())
         val dayOfWeek = date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale("ru"))
         val day = date.format(DateTimeFormatter.ofPattern("dd.MM"))
-        Log.e("XAxis", "Index $index → ${date.dayOfWeek} (${date})")
         return "$dayOfWeek\n$day"
     }
 }

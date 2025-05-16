@@ -8,6 +8,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.apppillar.core.model.ProductSelection
+import com.apppillar.feature_nutrition.R
 import com.apppillar.feature_nutrition.databinding.DialogInputWeightBinding
 import kotlin.math.roundToInt
 
@@ -26,7 +27,7 @@ class InputWeightDialogFragment : DialogFragment() {
         val builder = AlertDialog.Builder(requireContext())
             .setTitle(product?.name ?: "Продукт")
             .setView(binding.root)
-            .setPositiveButton("Добавить") { _, _ ->
+            .setPositiveButton(getString(R.string.add)) { _, _ ->
                 val grams = binding.editTextWeight.text.toString().toIntOrNull() ?: return@setPositiveButton
                 product?.let {
                     val scaled = it.copy(
@@ -43,7 +44,7 @@ class InputWeightDialogFragment : DialogFragment() {
                     findNavController().navigateUp()
                 }
             }
-            .setNegativeButton("Отмена", null)
+            .setNegativeButton(getString(R.string.cancel), null)
 
         binding.editTextWeight.doAfterTextChanged {
             val grams = it.toString().toIntOrNull()
@@ -57,7 +58,11 @@ class InputWeightDialogFragment : DialogFragment() {
                 )
             }
             binding.textViewSummary.text = preview?.let {
-                "К: ${it.calories} • Б: ${it.protein} • Ж: ${it.fat} • У: ${it.carbs}"
+                getString(R.string.cal) + ": ${it.calories} • " + getString(
+                    R.string.p
+                ) + ": ${it.protein} • " + getString(R.string.f) + ": ${it.fat} • " + getString(
+                    R.string.c
+                ) + ": ${it.carbs}"
             } ?: ""
         }
 

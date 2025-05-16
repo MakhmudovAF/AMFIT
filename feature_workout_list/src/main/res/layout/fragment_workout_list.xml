@@ -17,7 +17,7 @@
             android:minHeight="?attr/actionBarSize"
             app:layout_scrollEffect="compress"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:title="Workout" />
+            app:title="@string/workout" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView

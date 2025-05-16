@@ -1,6 +1,5 @@
 package com.apppillar.feature_home.presentation
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,7 @@ import com.apppillar.core.model.Gender
 import com.apppillar.core.model.Goal
 import com.apppillar.core.model.UserProfile
 import com.apppillar.core.storage.DataStorePrefs
+import com.apppillar.feature_home.R
 import com.apppillar.feature_home.databinding.FragmentUserProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -27,6 +27,26 @@ class UserProfileFragment : Fragment() {
     @Inject
     lateinit var dataStorePrefs: DataStorePrefs
 
+    private lateinit var activityLabels: List<String>
+    private lateinit var goalLabels: List<String>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityLabels = listOf(
+            getString(R.string.sedentary),
+            getString(R.string.light_activity),
+            getString(R.string.average_activity),
+            getString(R.string.high_activity),
+            getString(R.string.very_high_activity)
+        )
+
+        goalLabels = listOf(
+            getString(R.string.weight_loss),
+            getString(R.string.maintenance),
+            getString(R.string.weight_gain)
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -40,8 +60,10 @@ class UserProfileFragment : Fragment() {
         binding.buttonSave.setOnClickListener {
             val gender = if (binding.radioMale.isChecked) Gender.MALE else Gender.FEMALE
             val age = binding.editAge.text.toString().toIntOrNull() ?: return@setOnClickListener
-            val height = binding.editHeight.text.toString().toDoubleOrNull() ?: return@setOnClickListener
-            val weight = binding.editWeight.text.toString().toDoubleOrNull() ?: return@setOnClickListener
+            val height =
+                binding.editHeight.text.toString().toDoubleOrNull() ?: return@setOnClickListener
+            val weight =
+                binding.editWeight.text.toString().toDoubleOrNull() ?: return@setOnClickListener
             val activity = activityLevels[binding.spinnerActivity.selectedItemPosition]
             val goal = goals[binding.spinnerGoal.selectedItemPosition]
 
@@ -62,19 +84,31 @@ class UserProfileFragment : Fragment() {
     }
 
     private val activityLevels = listOf(1.2, 1.375, 1.55, 1.725, 1.9)
-    private val activityLabels = listOf(
-        "Малоподвижный", "Лёгкая активность", "Средняя", "Высокая", "Очень высокая"
-    )
+    /*private val activityLabels = listOf(
+        getString(R.string.sedentary),
+        getString(R.string.light_activity),
+        getString(R.string.average_activity),
+        getString(R.string.high_activity),
+        getString(R.string.very_high_activity)
+    )*/
 
     private val goals = listOf(Goal.LOSE_WEIGHT, Goal.MAINTAIN, Goal.GAIN_WEIGHT)
-    private val goalLabels = listOf("Похудение", "Поддержание", "Набор массы")
+    /*private val goalLabels = listOf(
+        getString(R.string.weight_loss),
+        getString(R.string.maintenance),
+        getString(R.string.weight_gain)
+    )*/
 
     private fun setupSpinners() {
         binding.spinnerActivity.adapter = ArrayAdapter(
-            requireContext(), R.layout.simple_spinner_dropdown_item, activityLabels
+            requireContext(),
+            com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+            activityLabels
         )
         binding.spinnerGoal.adapter = ArrayAdapter(
-            requireContext(), R.layout.simple_spinner_dropdown_item, goalLabels
+            requireContext(),
+            com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+            goalLabels
         )
     }
 

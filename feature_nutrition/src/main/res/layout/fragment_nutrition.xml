@@ -19,7 +19,7 @@
             app:layout_scrollEffect="compress"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:menu="@menu/menu_nutrition"
-            app:title="Nutrition" />
+            app:title="@string/nutrition" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Calories" />
+                android:text="@string/calories" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progressCalories"
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Protein" />
+                android:text="@string/protein" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progressProtein"
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Fat" />
+                android:text="@string/fat" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progressFat"
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Carbs" />
+                android:text="@string/carbs" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progressCarbs"

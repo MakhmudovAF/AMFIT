@@ -16,6 +16,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.apppillar.core.ResourcesProvider
 import com.apppillar.core.storage.DataStorePrefs
 import com.apppillar.feature_home.R
 import com.apppillar.feature_home.databinding.FragmentHomeBinding
@@ -33,6 +34,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -108,8 +110,8 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.selectedDate.collectLatest { date ->
-                    val menu = binding.materialToolbar.menu
-                    menu.findItem(R.id.text_select_date)?.title = date.toString()
+                    val formatted = date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
+                    binding.materialToolbar.menu.findItem(R.id.text_select_date)?.title = formatted
                 }
             }
         }
@@ -131,10 +133,11 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         homeHeaderAdapter = HomeHeaderAdapter(
+            ResourcesProvider(requireContext()),
             onDailyStepsClick = { showGoalInputDialog(GoalType.DAILY_STEPS) },
             onCompletedWorkoutsClick = { showGoalInputDialog(GoalType.COMPLETED_WORKOUTS) }
         )
-        completedWorkoutAdapter = CompletedWorkoutAdapter { workout ->
+        completedWorkoutAdapter = CompletedWorkoutAdapter(ResourcesProvider(requireContext())) { workout ->
             val action = HomeFragmentDirections
                 .actionHomeFragmentToCompletedWorkoutDetailFragment(workout.id.toLong())
             findNavController().navigate(action)
@@ -166,7 +169,7 @@ class HomeFragment : Fragment() {
 
     private fun showDatePicker() {
         val picker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Выберите дату")
+            .setTitleText(getString(R.string.choose_date))
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
 
@@ -184,7 +187,7 @@ class HomeFragment : Fragment() {
     private fun showGoalInputDialog(type: GoalType) {
         val context = requireContext()
         val inputLayout = TextInputLayout(context).apply {
-            hint = type.hint
+            hint = type.getHint(requireContext())
             setPadding(48, 24, 48, 24)
         }
         val editText = TextInputEditText(context).apply {
@@ -193,9 +196,9 @@ class HomeFragment : Fragment() {
         inputLayout.addView(editText)
 
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(type.title)
+            .setTitle(type.getTitle(requireContext()))
             .setView(inputLayout)
-            .setPositiveButton("Сохранить") { _, _ ->
+            .setPositiveButton(getString(R.string.save)) { _, _ ->
                 val value = editText.text.toString().toIntOrNull()
                 if (value != null) {
                     lifecycleScope.launch {
@@ -204,12 +207,12 @@ class HomeFragment : Fragment() {
                 } else {
                     Snackbar.make(
                         binding.root,
-                        "Введите корректное значение",
+                        getString(R.string.correct),
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
             }
-            .setNegativeButton("Отмена", null)
+            .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
 }

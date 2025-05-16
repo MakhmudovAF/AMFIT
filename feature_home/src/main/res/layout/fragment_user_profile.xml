@@ -18,34 +18,34 @@
                 android:id="@+id/radioMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Мужчина" />
+                android:text="@string/male" />
 
             <RadioButton
                 android:id="@+id/radioFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Женщина" />
+                android:text="@string/female" />
         </RadioGroup>
 
         <EditText
             android:id="@+id/editAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Возраст"
+            android:hint="@string/age"
             android:inputType="number" />
 
         <EditText
             android:id="@+id/editHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Рост (см)"
+            android:hint="@string/height"
             android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/editWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Вес (кг)"
+            android:hint="@string/weight"
             android:inputType="numberDecimal" />
 
         <Spinner
@@ -62,6 +62,6 @@
             android:id="@+id/buttonSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Сохранить" />
+            android:text="@string/save" />
     </LinearLayout>
 </ScrollView>

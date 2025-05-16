@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import com.apppillar.core.ResourcesProvider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class WorkoutEditHeaderAdapter(
+    private val resourcesProvider: ResourcesProvider,
     private var title: String,
     private val onTitleChanged: (String) -> Unit
 ) : RecyclerView.Adapter<WorkoutEditHeaderAdapter.HeaderViewHolder>() {
@@ -41,7 +43,7 @@ class WorkoutEditHeaderAdapter(
 
                 if (validationActive) {
                     titleInputLayout?.apply {
-                        error = if (title.isBlank()) "Title is required" else null
+                        error = if (title.isBlank()) resourcesProvider.getString(R.string.title_is_req) else null
                         isErrorEnabled = !error.isNullOrBlank()
                     }
                 }
@@ -64,7 +66,7 @@ class WorkoutEditHeaderAdapter(
     fun validate(): Boolean {
         validationActive = true
         val isValid = title.isNotBlank()
-        titleInputLayout?.error = if (!isValid) "Title is required" else null
+        titleInputLayout?.error = if (!isValid) resourcesProvider.getString(R.string.title_is_req) else null
         return isValid
     }
 }

@@ -1,6 +1,5 @@
 package com.apppillar.feature_nutrition.presentation.product_search
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apppillar.core.database.dao.NutritionDao
@@ -48,8 +47,6 @@ class NutritionViewModel @Inject constructor(
         viewModelScope.launch {
             preload.preloadIfEmpty()
         }
-
-        Log.e("NutritionViewModel", ": ${_selectedDate.value}", )
 
         viewModelScope.launch {
             dataStorePrefs.getUserProfile().collectLatest { profile ->
@@ -104,7 +101,6 @@ class NutritionViewModel @Inject constructor(
             val existingMeal = _uiState.value.meals[type]?.meal
             val millis = _selectedDate.value.atStartOfDay(ZoneId.systemDefault())
                 .toInstant().toEpochMilli()
-            Log.e("NutritionViewModel", ": $millis", )
             val mealId = existingMeal?.id ?: dao.insertMeal(MealEntity(date = millis, type = type))
 
             dao.insertMealProduct(

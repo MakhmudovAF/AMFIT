@@ -96,8 +96,8 @@ class StepCounterService : Service(), SensorEventListener {
         }
 
         return NotificationCompat.Builder(this, channelId)
-            .setContentTitle("Подсчёт шагов")
-            .setContentText("Шагомер активен")
+            .setContentTitle(getString(R.string.steps_count))
+            .setContentText(getString(R.string.step_counter_active))
             .setSmallIcon(R.drawable.ic_baseline_directions_walk_24)
             .build()
     }

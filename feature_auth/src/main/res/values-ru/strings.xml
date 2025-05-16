@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sign_up">Регистрация</string>
+    <string name="create_an_account">Создайте аккаунт!</string>
+    <string name="please_sign_up_and_create_a_new_account">Пожалуйста, зарегистрируйтесь и создайте новую учетную запись</string>
+    <string name="name">Имя</string>
+    <string name="email">Эл. почта</string>
+    <string name="password">Пароль</string>
+    <string name="have_an_account">У вас есть аккаунт?\u0020</string>
+    <string name="sign_in">Вход</string>
+    <string name="welcome_back">С возвращением!</string>
+    <string name="please_sign_in_to_your_account">Пожалуйста, войдите в свою учетную запись</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="sign_in_as_guest">Вход в качестве гостя</string>
+    <string name="dont_have_an_account">У вас нет учетной записи?\u0020</string>
+</resources>

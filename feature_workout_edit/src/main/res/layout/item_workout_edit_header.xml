@@ -20,6 +20,6 @@
             android:id="@+id/edit_text_workout_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Workout Title" />
+            android:hint="@string/workout_title" />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

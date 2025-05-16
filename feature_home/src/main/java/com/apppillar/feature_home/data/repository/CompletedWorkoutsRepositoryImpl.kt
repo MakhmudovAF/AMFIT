@@ -1,6 +1,5 @@
 package com.apppillar.feature_home.data.repository
 
-import android.util.Log
 import com.apppillar.core.database.dao.CompletedWorkoutListDao
 import com.apppillar.feature_home.domain.model.CompletedWorkout
 import com.apppillar.feature_home.domain.repository.CompletedWorkoutsRepository
@@ -69,8 +68,6 @@ class CompletedWorkoutsRepositoryImpl @Inject constructor(
     fun formatDurationSmart(seconds: Int): String {
         val min = seconds / 60
         val sec = seconds % 60
-
-        Log.e("TAG", "formatDurationSmart: $seconds", )
 
         return buildString {
             if (min > 0) append("$min min.")

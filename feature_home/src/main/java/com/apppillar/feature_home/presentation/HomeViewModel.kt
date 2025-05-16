@@ -3,6 +3,7 @@ package com.apppillar.feature_home.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apppillar.core.storage.DataStorePrefs
+import com.apppillar.feature_home.R
 import com.apppillar.feature_home.domain.model.HomeState
 import com.apppillar.feature_home.domain.usecase.GetCompletedWorkoutsUseCase
 import com.apppillar.feature_home.domain.usecase.GetDailyStepsUseCase
@@ -26,6 +27,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     //private val addCompletedWorkoutUseCase: AddCompletedWorkoutUseCase,
+    private val resourcesProvider: com.apppillar.core.ResourcesProvider,
     private val getDailyStepsUseCase: GetDailyStepsUseCase,
     private val getCompletedWorkoutsUseCase: GetCompletedWorkoutsUseCase,
     private val getStepsForDate: GetStepsForDate,
@@ -55,7 +57,7 @@ class HomeViewModel @Inject constructor(
         observeJob?.cancel()
         observeJob = viewModelScope.launch {
             val goals = getGoalsUseCase()
-            val username = dataStorePrefs.username.firstOrNull() ?: "Пользователь"
+            val username = dataStorePrefs.username.firstOrNull() ?: resourcesProvider.getString(R.string.user)
 
             combine(
                 getDailyStepsUseCase(),
@@ -75,8 +77,8 @@ class HomeViewModel @Inject constructor(
 
                 newState.copy(
                     goalAchievedMessage = when {
-                        steps >= stepsGoal && _state.value.dailySteps < stepsGoal -> "Поздравляем! Вы достигли цели по шагам! \uD83C\uDF89"
-                        workouts.size >= workoutGoal && _state.value.workouts < workoutGoal -> "Отлично! Вы достигли цели по тренировкам! \uD83C\uDFCB\uFE0F"
+                        steps >= stepsGoal && _state.value.dailySteps < stepsGoal -> resourcesProvider.getString(R.string.congrats_steps)
+                        workouts.size >= workoutGoal && _state.value.workouts < workoutGoal -> resourcesProvider.getString(R.string.congrats_workouts)
                         else -> null
                     }
                 )
@@ -117,7 +119,7 @@ class HomeViewModel @Inject constructor(
         observeJob?.cancel()
         _isDateFiltered.value = true
         observeJob = viewModelScope.launch {
-            val username = dataStorePrefs.username.firstOrNull() ?: "Пользователь"
+            val username = dataStorePrefs.username.firstOrNull() ?: resourcesProvider.getString(R.string.user)
             val formattedDate = date.toString()
 
             val stepsFlow = getStepsForDate(formattedDate)

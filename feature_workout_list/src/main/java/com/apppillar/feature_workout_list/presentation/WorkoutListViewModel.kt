@@ -1,6 +1,5 @@
 package com.apppillar.feature_workout_list.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apppillar.feature_workout_list.domain.model.Workout
@@ -39,7 +38,6 @@ class WorkoutListViewModel @Inject constructor(
                 deleteWorkoutUseCase(item.id)
                 getWorkoutList()
             } catch (e: Exception) {
-                Log.e("WorkoutListViewModel", "Error deleting workout", e)
             }
         }
     }

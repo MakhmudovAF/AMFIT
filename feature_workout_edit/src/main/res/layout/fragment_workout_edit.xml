@@ -20,7 +20,7 @@
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:menu="@menu/menu_toolbar_workout_edit"
             app:navigationIcon="@drawable/ic_baseline_close_24"
-            app:title="Edit workout"
+            app:title="@string/edit_workout"
             app:titleCentered="true"
             app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge" />
     </com.google.android.material.appbar.AppBarLayout>

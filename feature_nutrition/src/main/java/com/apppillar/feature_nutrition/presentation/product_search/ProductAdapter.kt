@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.apppillar.core.ResourcesProvider
 import com.apppillar.core.database.entity.ProductLibraryEntity
+import com.apppillar.feature_nutrition.R
 import com.apppillar.feature_nutrition.databinding.ItemProductBinding
 
 class ProductAdapter(
+    private val resourcesProvider: ResourcesProvider,
     private val onClick: (ProductLibraryEntity) -> Unit
 ) : ListAdapter<ProductLibraryEntity, ProductAdapter.ProductViewHolder>(DiffCallback) {
 
@@ -17,7 +20,12 @@ class ProductAdapter(
 
         fun bind(item: ProductLibraryEntity) = with(binding) {
             textViewName.text = item.name
-            textViewInfo.text = "К: ${item.caloriesPer100g} • Б: ${item.proteinPer100g} • Ж: ${item.fatPer100g} • У: ${item.carbsPer100g}"
+            textViewInfo.text =
+                resourcesProvider.getString(R.string.cal) + ": ${item.caloriesPer100g} • " + resourcesProvider.getString(
+                    R.string.p
+                ) + ": ${item.proteinPer100g} • " + resourcesProvider.getString(R.string.f) + ": ${item.fatPer100g} • " + resourcesProvider.getString(
+                    R.string.c
+                ) + ": ${item.carbsPer100g}"
             root.setOnClickListener { onClick(item) }
         }
     }

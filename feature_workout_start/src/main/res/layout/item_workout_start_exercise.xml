@@ -75,7 +75,7 @@
         android:drawableStart="@drawable/ic_outline_timer_24"
         android:drawablePadding="8dp"
         android:gravity="center"
-        android:text="Rest Timer: 2min 0s"
+        android:text="@string/rest_timer"
         android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
     <LinearLayout
@@ -90,6 +90,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="?attr/colorSecondary"
-        android:text="Add Set" />
+        android:text="@string/add_set" />
 
 </LinearLayout>

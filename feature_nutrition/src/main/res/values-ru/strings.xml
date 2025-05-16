@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nutrition">Питание</string>
+    <string name="calories">Калории</string>
+    <string name="cal">К</string>
+    <string name="protein">Белки</string>
+    <string name="p">Б</string>
+    <string name="fat">Жиры</string>
+    <string name="f">Ж</string>
+    <string name="carbs">Углеводы</string>
+    <string name="c">У</string>
+    <string name="grams">Граммы</string>
+    <string name="g">г</string>
+    <string name="breakfast">Завтрак</string>
+    <string name="lunch">Обед</string>
+    <string name="dinner">Ужин</string>
+    <string name="snack">Перекус</string>
+    <string name="choose_date">Выберите дату</string>
+    <string name="add">Добавить</string>
+    <string name="cancel">Отмена</string>
+    <string name="all_categories">Все категории</string>
+</resources>

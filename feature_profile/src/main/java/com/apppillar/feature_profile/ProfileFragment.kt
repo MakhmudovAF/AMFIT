@@ -52,14 +52,14 @@ class ProfileFragment : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
-                    binding.textViewUsername.text = "Привет, ${state.username}!"
+                    binding.textViewUsername.text = "${state.username}!"
                     /*renderWorkoutChart(state.workoutStats)
                     renderNutritionChart(state.calorieStats)
                     renderVolumeChart(state.volumeStats)*/
                     binding.textViewCompletedWorkouts.text =
-                        "Завершённых тренировок: ${state.completedWorkoutsCount}"
-                    renderLineChart(binding.chartWorkouts, state.volumeStats, "Объём")
-                    renderLineChart(binding.chartNutrition, state.calorieStats, "Калории")
+                        getString(R.string.completed_workouts) + " ${state.completedWorkoutsCount}"
+                    renderLineChart(binding.chartWorkouts, state.volumeStats, getString(R.string.volume))
+                    renderLineChart(binding.chartNutrition, state.calorieStats, getString(R.string.calories))
 
                     binding.tabWorkoutStats.getTabAt(0)?.select()
                     binding.tabNutritionStats.getTabAt(0)?.select()
@@ -70,16 +70,16 @@ class ProfileFragment : Fragment() {
 
     private fun setupTabs() {
         binding.tabWorkoutStats.apply {
-            addTab(newTab().setText("Объём"))
-            addTab(newTab().setText("Подходы"))
-            addTab(newTab().setText("Макс. вес"))
+            addTab(newTab().setText(getString(R.string.volume)))
+            addTab(newTab().setText(getString(R.string.sets)))
+            addTab(newTab().setText(getString(R.string.max_weight)))
         }
 
         binding.tabNutritionStats.apply {
-            addTab(newTab().setText("Калории"))
-            addTab(newTab().setText("Белки"))
-            addTab(newTab().setText("Жиры"))
-            addTab(newTab().setText("Углеводы"))
+            addTab(newTab().setText(getString(R.string.calories)))
+            addTab(newTab().setText(getString(R.string.protein)))
+            addTab(newTab().setText(getString(R.string.fat)))
+            addTab(newTab().setText(getString(R.string.carbs)))
         }
 
         val startDate = LocalDate.now().minusDays(6)
@@ -99,9 +99,9 @@ class ProfileFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val state = viewModel.uiState.value
                 when (tab.position) {
-                    0 -> renderLineChart(binding.chartWorkouts, state.volumeStats, "Объём")
-                    1 -> renderLineChart(binding.chartWorkouts, state.setsStats, "Подходы")
-                    2 -> renderLineChart(binding.chartWorkouts, state.maxWeightStats, "Макс. вес")
+                    0 -> renderLineChart(binding.chartWorkouts, state.volumeStats, getString(R.string.volume))
+                    1 -> renderLineChart(binding.chartWorkouts, state.setsStats, getString(R.string.sets))
+                    2 -> renderLineChart(binding.chartWorkouts, state.maxWeightStats, getString(R.string.max_weight))
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {}
@@ -112,10 +112,10 @@ class ProfileFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val state = viewModel.uiState.value
                 when (tab.position) {
-                    0 -> renderLineChart(binding.chartNutrition, state.calorieStats, "Калории")
-                    1 -> renderLineChart(binding.chartNutrition, state.proteinStats, "Белки")
-                    2 -> renderLineChart(binding.chartNutrition, state.fatStats, "Жиры")
-                    3 -> renderLineChart(binding.chartNutrition, state.carbsStats, "Углеводы")
+                    0 -> renderLineChart(binding.chartNutrition, state.calorieStats, getString(R.string.calories))
+                    1 -> renderLineChart(binding.chartNutrition, state.proteinStats, getString(R.string.protein))
+                    2 -> renderLineChart(binding.chartNutrition, state.fatStats, getString(R.string.fat))
+                    3 -> renderLineChart(binding.chartNutrition, state.carbsStats, getString(R.string.carbs))
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {}

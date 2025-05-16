@@ -11,6 +11,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.apppillar.core.ResourcesProvider
 import com.apppillar.feature_workout_start.domain.model.Exercise
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
@@ -21,6 +22,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class WorkoutStartExerciseAdapter(
+    private val resourcesProvider: ResourcesProvider,
     private val onDeleteExercise: (Long) -> Unit,
     private val onAddSet: (Long) -> Unit,
     private val onDeleteSet: (Long, Long) -> Unit,
@@ -86,7 +88,7 @@ class WorkoutStartExerciseAdapter(
                     getRestTimer(ex.id).collect { seconds ->
                         val min = seconds / 60
                         val sec = seconds % 60
-                        restTimerText.text = "Rest Timer: ${min}m ${sec}s"
+                        restTimerText.text = resourcesProvider.getString(R.string.rest_timer) + "${min}m ${sec}s"
                     }
                 }
             }

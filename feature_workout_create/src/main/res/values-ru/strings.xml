@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="minutes">Минуты</string>
+    <string name="seconds">Секунды</string>
+    <string name="create_workout">Создание тренировки</string>
+    <string name="rest_timer">Таймер отдыха:\u0020</string>
+    <string name="add_set">Добавить подход</string>
+    <string name="weight">Вес</string>
+    <string name="reps">Повторы</string>
+    <string name="add_exercise">Добавить упражнение</string>
+    <string name="workout_title">Название тренировки</string>
+    <string name="set_rest_duration">Установка продолжительности отдыха</string>
+    <string name="ok">Ок</string>
+    <string name="cancel">Отмена</string>
+    <string name="title_is_req">Требуется название</string>
+</resources>
