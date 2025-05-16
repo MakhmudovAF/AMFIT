@@ -6,8 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search"
+        app:startIconDrawable="@drawable/ic_baseline_search_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <!-- Поисковая строка -->
-    <EditText
+    <!--<EditText
         android:id="@+id/editTextSearch"
         android:hint="Поиск продукта"
         android:inputType="text"
@@ -15,7 +31,7 @@
         android:layout_height="wrap_content"
         android:drawableStart="@android:drawable/ic_menu_search"
         android:padding="12dp"
-        android:background="@android:drawable/editbox_background_normal" />
+        android:background="@android:drawable/editbox_background_normal" />-->
 
     <!-- Фильтр по категории -->
     <Spinner

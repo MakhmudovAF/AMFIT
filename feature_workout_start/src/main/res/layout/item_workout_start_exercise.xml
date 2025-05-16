@@ -40,7 +40,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Chest" />
+                android:text="Chest"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_startWorkout_exerciseBodyPart"
@@ -72,6 +73,7 @@
         android:id="@+id/textView_startWorkout_restTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:drawableStart="@drawable/ic_outline_timer_24"
         android:drawablePadding="8dp"
         android:gravity="center"

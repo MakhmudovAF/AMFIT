@@ -27,7 +27,7 @@ interface WorkoutStartDao {
     suspend fun getCompletedWorkoutById(id: Long): CompletedWorkoutWithExercises
 
     @Query("""
-    SELECT strftime('%Y-%m-%d', datetime(timestamp / 1000, 'unixepoch')) AS date, COUNT(*) as count
+    SELECT strftime('%Y-%m-%d', datetime(timestamp / 1000, 'unixepoch', 'localtime')) AS date, COUNT(*) as count
     FROM completed_workout_list
     WHERE timestamp >= :startMillis
     GROUP BY date
@@ -35,7 +35,7 @@ interface WorkoutStartDao {
     suspend fun getWorkoutCountPerDay(startMillis: Long): List<WorkoutStat>
 
     @Query("""
-    SELECT strftime('%Y-%m-%d', datetime(w.timestamp / 1000, 'unixepoch')) AS date,
+    SELECT strftime('%Y-%m-%d', datetime(w.timestamp / 1000, 'unixepoch', 'localtime')) AS date,
            SUM(CAST(s.weight AS FLOAT) * CAST(s.reps AS INT)) AS totalVolume
     FROM completed_workout_list AS w
     JOIN completed_exercise_list AS e ON e.completedWorkoutId = w.id

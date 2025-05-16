@@ -1,4 +1,5 @@
 <resources>
+    <string name="search">Search</string>
     <string name="nutrition">Nutrition</string>
     <string name="calories">Calories</string>
     <string name="cal">Cal</string>

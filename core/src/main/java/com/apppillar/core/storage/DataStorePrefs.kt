@@ -34,6 +34,7 @@ class DataStorePrefs @Inject constructor(
         val KEY_HEIGHT = floatPreferencesKey("height")
         val KEY_ACTIVITY = floatPreferencesKey("activity")
         val KEY_GOAL = stringPreferencesKey("goal")
+        val KEY_LANGUAGE = stringPreferencesKey("selected_language")
     }
 
     val token: Flow<String?> = context.dataStore.data.map { it[TOKEN_KEY] }
@@ -82,6 +83,14 @@ class DataStorePrefs @Inject constructor(
             )
         } else null
     }
+
+    suspend fun setLanguage(langCode: String) {
+        context.dataStore.edit { prefs ->
+            prefs[KEY_LANGUAGE] = langCode
+        }
+    }
+
+    fun getLanguage(): Flow<String?> = context.dataStore.data.map { it[KEY_LANGUAGE] }
 
     suspend fun isProfileSet(): Boolean {
         return context.dataStore.data.first()[KEY_AGE] != null

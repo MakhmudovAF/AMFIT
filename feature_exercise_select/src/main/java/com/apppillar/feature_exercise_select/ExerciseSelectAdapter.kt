@@ -35,7 +35,6 @@ class ExerciseSelectAdapter(
         fun bind(exercise: ExerciseSelect) {
             name.text = exercise.name
             info.text = "${exercise.bodyPart} • ${exercise.equipment}"
-            Log.e("TAG", "bind: ${exercise.imageUrl}", )
 
             image?.let {
                 Glide.with(it.context)

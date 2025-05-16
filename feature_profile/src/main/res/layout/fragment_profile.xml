@@ -26,15 +26,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_weight="1"
-                android:text="Пользователь!" />
+                android:text="Пользователь!"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
 
             <TextView
                 android:id="@+id/textViewCompletedWorkouts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="@string/completed_workouts" />
+                android:text="@string/completed_workouts"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
@@ -72,12 +75,39 @@
             android:layout_height="250dp"
             android:layout_marginBottom="24dp" />-->
 
-        <!-- Кнопка смены темы -->
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/switchTheme"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dark_theme" />
+            android:orientation="horizontal">
+
+            <!-- Кнопка смены темы -->
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/dark_theme" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_en"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English" />
+
+                <RadioButton
+                    android:id="@+id/radio_ru"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Русский" />
+            </RadioGroup>
+        </LinearLayout>
 
         <!-- Кнопка редактирования профиля -->
         <com.google.android.material.button.MaterialButton

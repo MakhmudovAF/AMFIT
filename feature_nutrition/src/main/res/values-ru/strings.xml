@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="search">Поиск</string>
     <string name="nutrition">Питание</string>
     <string name="calories">Калории</string>
     <string name="cal">К</string>

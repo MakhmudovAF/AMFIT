@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.apppillar.core.storage.LocaleManager
 import com.apppillar.feature_profile.databinding.FragmentProfileBinding
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -21,6 +22,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.tabs.TabLayout
+import com.jakewharton.processphoenix.ProcessPhoenix
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -45,6 +47,18 @@ class ProfileFragment : Fragment() {
         setupObservers()
         setupTabs()
         setupThemeSwitch()
+        binding.radioGroupLanguage.setOnCheckedChangeListener { _, checkedId ->
+            val langCode = when (checkedId) {
+                R.id.radio_en -> "en"
+                R.id.radio_ru -> "ru"
+                else -> return@setOnCheckedChangeListener
+            }
+
+            lifecycleScope.launch {
+                LocaleManager.persistLanguage(requireContext(), langCode)
+                ProcessPhoenix.triggerRebirth(requireContext()) // полная перезагрузка app
+            }
+        }
         setupEditButton()
     }
 

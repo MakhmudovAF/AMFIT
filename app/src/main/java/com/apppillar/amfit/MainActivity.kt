@@ -1,5 +1,6 @@
 package com.apppillar.amfit
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -15,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.apppillar.amfit.databinding.ActivityMainBinding
 import com.apppillar.core.navigation.FragmentDataListener
 import com.apppillar.core.storage.DataStorePrefs
+import com.apppillar.core.storage.LocaleManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -31,6 +33,11 @@ class MainActivity : AppCompatActivity(), FragmentDataListener {
 
     @Inject
     lateinit var dataStorePrefs: DataStorePrefs
+
+    override fun attachBaseContext(newBase: Context) {
+        val updated = LocaleManager.applyStoredLocale(newBase)
+        super.attachBaseContext(updated)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
