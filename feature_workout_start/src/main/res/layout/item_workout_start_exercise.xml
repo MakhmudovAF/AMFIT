@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="16dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imageCardView_startWorkout_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:id="@+id/imageView_startWorkout_exercise"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:scaleType="fitXY" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_startWorkout_exerciseName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Chest"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_startWorkout_exerciseBodyPart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Chest" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_startWorkout_exerciseEquip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Chest" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton_startWorkout_exerciseDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_outline_delete_24" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_startWorkout_restTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_outline_timer_24"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="@string/rest_timer"
+        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout_startWorkout_exerciseSets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_startWorkout_addSet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="?attr/colorSecondary"
+        android:text="@string/add_set" />
+
+</LinearLayout>

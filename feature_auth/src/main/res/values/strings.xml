@@ -1,0 +1,15 @@
+<resources>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_an_account">Create an account!</string>
+    <string name="please_sign_up_and_create_a_new_account">Please sign up and create a new account</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="have_an_account">Have an account?\u0020</string>
+    <string name="sign_in">Sign In</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="please_sign_in_to_your_account">Please sign in to your account</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="sign_in_as_guest">Sign In as a Guest</string>
+    <string name="dont_have_an_account">Don’t have an account?\u0020</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView_startWorkout_setNumber"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="1" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editText_startWorkout_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="@string/weight"
+        android:inputType="numberDecimal" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editText_startWorkout_reps"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="@string/reps"
+        android:inputType="number" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/materialCheckBox_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/imageButton_startWorkout_setDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_weight="0"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_outline_delete_24" />
+</LinearLayout>

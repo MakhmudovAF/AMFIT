@@ -1,0 +1,119 @@
+package com.apppillar.feature_home.presentation
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.apppillar.core.model.Gender
+import com.apppillar.core.model.Goal
+import com.apppillar.core.model.UserProfile
+import com.apppillar.core.storage.DataStorePrefs
+import com.apppillar.feature_home.R
+import com.apppillar.feature_home.databinding.FragmentUserProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@AndroidEntryPoint
+class UserProfileFragment : Fragment() {
+
+    private var _binding: FragmentUserProfileBinding? = null
+    private val binding get() = _binding!!
+
+    @Inject
+    lateinit var dataStorePrefs: DataStorePrefs
+
+    private lateinit var activityLabels: List<String>
+    private lateinit var goalLabels: List<String>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityLabels = listOf(
+            getString(R.string.sedentary),
+            getString(R.string.light_activity),
+            getString(R.string.average_activity),
+            getString(R.string.high_activity),
+            getString(R.string.very_high_activity)
+        )
+
+        goalLabels = listOf(
+            getString(R.string.weight_loss),
+            getString(R.string.maintenance),
+            getString(R.string.weight_gain)
+        )
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setupSpinners()
+
+        binding.buttonSave.setOnClickListener {
+            val gender = if (binding.radioMale.isChecked) Gender.MALE else Gender.FEMALE
+            val age = binding.editAge.text.toString().toIntOrNull() ?: return@setOnClickListener
+            val height =
+                binding.editHeight.text.toString().toDoubleOrNull() ?: return@setOnClickListener
+            val weight =
+                binding.editWeight.text.toString().toDoubleOrNull() ?: return@setOnClickListener
+            val activity = activityLevels[binding.spinnerActivity.selectedItemPosition]
+            val goal = goals[binding.spinnerGoal.selectedItemPosition]
+
+            val profile = UserProfile(
+                gender = gender,
+                age = age,
+                weightKg = weight,
+                heightCm = height,
+                activityLevel = activity,
+                goal = goal
+            )
+
+            lifecycleScope.launch {
+                dataStorePrefs.saveUserProfile(profile)
+                findNavController().navigateUp()
+            }
+        }
+    }
+
+    private val activityLevels = listOf(1.2, 1.375, 1.55, 1.725, 1.9)
+    /*private val activityLabels = listOf(
+        getString(R.string.sedentary),
+        getString(R.string.light_activity),
+        getString(R.string.average_activity),
+        getString(R.string.high_activity),
+        getString(R.string.very_high_activity)
+    )*/
+
+    private val goals = listOf(Goal.LOSE_WEIGHT, Goal.MAINTAIN, Goal.GAIN_WEIGHT)
+    /*private val goalLabels = listOf(
+        getString(R.string.weight_loss),
+        getString(R.string.maintenance),
+        getString(R.string.weight_gain)
+    )*/
+
+    private fun setupSpinners() {
+        binding.spinnerActivity.adapter = ArrayAdapter(
+            requireContext(),
+            com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+            activityLabels
+        )
+        binding.spinnerGoal.adapter = ArrayAdapter(
+            requireContext(),
+            com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+            goalLabels
+        )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

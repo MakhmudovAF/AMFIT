@@ -1,0 +1,15 @@
+<resources>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Seconds</string>
+    <string name="create_workout">Create workout</string>
+    <string name="rest_timer">Rest Timer:\u0020</string>
+    <string name="add_set">Add Set</string>
+    <string name="weight">Weight</string>
+    <string name="reps">Reps</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="workout_title">Workout Title</string>
+    <string name="set_rest_duration">Set Rest Duration</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_is_req">Title is required</string>
+</resources>

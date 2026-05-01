@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="workout">Тренировка</string>
+    <string name="new_workout">Новая тренировка</string>
+    <string name="create_scratch_workout">Создайте тренировку с нуля</string>
+    <string name="create">Создать</string>
+    <string name="your_workouts">Ваши тренировки</string>
+    <string name="start">Начать</string>
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+</resources>

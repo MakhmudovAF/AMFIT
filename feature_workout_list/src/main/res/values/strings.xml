@@ -1,0 +1,10 @@
+<resources>
+    <string name="workout">Workout</string>
+    <string name="new_workout">New workout</string>
+    <string name="create_scratch_workout">Create a workout from scratch</string>
+    <string name="create">Create</string>
+    <string name="your_workouts">Your workouts</string>
+    <string name="start">Start</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+</resources>
