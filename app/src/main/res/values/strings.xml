@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">AMFIT</string>
+
+    <string name="home">Home</string>
+    <string name="workout">Workout</string>
+    <string name="profile">Profile</string>
+
+    <string name="notifications">Notifications</string>
+    <string name="more_options">More options</string>
+
+    <string name="good_morning">Good Morning, %1$s!</string>
+    <string name="welcome">Welcome to AMFIT app.</string>
+
+    <string name="daily_steps">Daily Steps</string>
+    <string name="workout_days">Day Working Out</string>
+    <string name="calories_burnt">Calories Burnt</string>
+
+    <string name="your_week">Your Week</string>
+    <string name="latest_workout">Latest Workout</string>
 </resources>
