@@ -1,4 +1,4 @@
-package com.example.amfit.ui.components
+package com.example.amfit.ui.screens.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,7 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.amfit.R
-import com.example.amfit.ui.home.HomeUiState
+import com.example.amfit.ui.screens.home.HomeUiState
 
 @Composable
 fun HomeStats(

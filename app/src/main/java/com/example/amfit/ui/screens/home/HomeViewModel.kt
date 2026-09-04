@@ -1,4 +1,4 @@
-package com.example.amfit.ui.home
+package com.example.amfit.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import com.example.amfit.data.WeekDay

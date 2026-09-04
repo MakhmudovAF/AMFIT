@@ -16,9 +16,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.amfit.navigation.Screen
 import com.example.amfit.ui.components.BottomBar
 import com.example.amfit.ui.components.TopBar
-import com.example.amfit.ui.home.HomeScreen
-import com.example.amfit.ui.profile.ProfileScreen
-import com.example.amfit.ui.workout.WorkoutScreen
+import com.example.amfit.ui.screens.home.HomeScreen
+import com.example.amfit.ui.screens.profile.ProfileScreen
+import com.example.amfit.ui.screens.workout.WorkoutScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -1,4 +1,4 @@
-package com.example.amfit.ui.home
+package com.example.amfit.ui.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,8 +12,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.amfit.ui.components.HomeHeaderSection
-import com.example.amfit.ui.components.WorkoutCard
+import com.example.amfit.ui.screens.home.components.HomeHeaderSection
+import com.example.amfit.ui.screens.home.components.HomeWorkoutCard
 
 @Composable
 fun HomeScreen(
@@ -38,7 +38,7 @@ fun HomeScreen(
             key = { workout -> workout.id }
         ) { workout ->
 
-            WorkoutCard(
+            HomeWorkoutCard(
                 finishedWorkout = workout,
                 modifier = Modifier.fillMaxWidth()
             )

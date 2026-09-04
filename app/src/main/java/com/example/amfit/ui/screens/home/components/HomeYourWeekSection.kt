@@ -1,4 +1,4 @@
-package com.example.amfit.ui.components
+package com.example.amfit.ui.screens.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,7 +17,7 @@ import com.example.amfit.R
 import com.example.amfit.data.WeekDay
 
 @Composable
-fun YourWeekSection(
+fun HomeYourWeekSection(
     days: List<WeekDay>,
     modifier: Modifier = Modifier
 ) {
@@ -37,7 +37,7 @@ fun YourWeekSection(
             verticalAlignment = Alignment.CenterVertically
         ) {
             days.forEach { day ->
-                DayItem(day)
+                HomeDayItem(day)
             }
         }
     }

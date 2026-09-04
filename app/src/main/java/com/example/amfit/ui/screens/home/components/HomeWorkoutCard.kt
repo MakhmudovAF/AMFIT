@@ -1,4 +1,4 @@
-package com.example.amfit.ui.components
+package com.example.amfit.ui.screens.home.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.example.amfit.data.FinishedWorkout
 
 @Composable
-fun WorkoutCard(
+fun HomeWorkoutCard(
     finishedWorkout: FinishedWorkout,
     modifier: Modifier = Modifier
 ) {

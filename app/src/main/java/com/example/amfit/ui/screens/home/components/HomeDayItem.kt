@@ -1,4 +1,4 @@
-package com.example.amfit.ui.components
+package com.example.amfit.ui.screens.home.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.example.amfit.data.WeekDay
 
 @Composable
-fun DayItem(
+fun HomeDayItem(
     day: WeekDay,
     modifier: Modifier = Modifier
 ) {

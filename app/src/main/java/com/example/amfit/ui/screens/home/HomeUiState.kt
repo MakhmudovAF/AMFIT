@@ -1,4 +1,4 @@
-package com.example.amfit.ui.home
+package com.example.amfit.ui.screens.home
 
 import com.example.amfit.data.FinishedWorkout
 import com.example.amfit.data.WeekDay
