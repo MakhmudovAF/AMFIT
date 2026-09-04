@@ -12,7 +12,7 @@ data class HomeUiState(
     val workoutDays: Int = 12,
     val workoutDaysGoal: Int = 22,
 
-    val caloriesBurnt: Int = 915,
+    val caloriesBurned: Int = 915,
     val caloriesGoal: Int = 1_500,
 
     val weekDays: List<WeekDay> = emptyList(),

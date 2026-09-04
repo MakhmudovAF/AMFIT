@@ -37,7 +37,7 @@ fun AMFITApp() {
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             TopBar(
-                title = currentScreen.title,
+                title = currentScreen.titleRes,
                 scrollBehavior = scrollBehavior
             )
         },

@@ -8,15 +8,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class HomeViewModel : ViewModel() {
-
     private val repository = WorkoutRepository()
-
     private val _uiState = MutableStateFlow(
         HomeUiState(
             weekDays = createWeekDays()
         )
     )
-
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
     init {

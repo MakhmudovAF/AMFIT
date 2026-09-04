@@ -10,8 +10,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.amfit.R
 import com.example.amfit.data.WeekDay
 
 @Composable
@@ -24,7 +26,7 @@ fun YourWeekSection(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Your Week",
+            text = stringResource(R.string.home_your_week),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(bottom = 8.dp)

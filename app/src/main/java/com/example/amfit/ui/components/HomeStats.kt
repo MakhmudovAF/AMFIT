@@ -12,9 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.amfit.R
 import com.example.amfit.ui.home.HomeUiState
 
 @Composable
@@ -32,24 +34,33 @@ fun HomeStats(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             HomeStatsIndicator(
-                title = "Daily Steps",
-                valueText = "${uiState.dailySteps}/${uiState.dailyStepsGoal}",
-                progress = uiState.dailySteps.toFloat() /
-                        uiState.dailyStepsGoal.toFloat(),
+                title = stringResource(R.string.stats_daily_steps),
+                valueText = stringResource(
+                    R.string.format_progress,
+                    uiState.dailySteps,
+                    uiState.dailyStepsGoal
+                ),
+                progress = if (uiState.dailyStepsGoal == 0) 0f else uiState.dailySteps.toFloat() / uiState.dailyStepsGoal,
                 modifier = Modifier.weight(1f)
             )
             HomeStatsIndicator(
-                title = "Day Working Out",
-                valueText = "${uiState.workoutDays}/${uiState.workoutDaysGoal}",
-                progress = uiState.workoutDays.toFloat() /
-                        uiState.workoutDaysGoal.toFloat(),
+                title = stringResource(R.string.stats_workout_days),
+                valueText = stringResource(
+                    R.string.format_progress,
+                    uiState.workoutDays,
+                    uiState.workoutDaysGoal
+                ),
+                progress = if (uiState.workoutDaysGoal == 0) 0f else uiState.workoutDays.toFloat() / uiState.workoutDaysGoal,
                 modifier = Modifier.weight(1f)
             )
             HomeStatsIndicator(
-                title = "Calories Burnt",
-                valueText = "${uiState.caloriesBurnt}/${uiState.caloriesGoal}",
-                progress = uiState.caloriesBurnt.toFloat() /
-                        uiState.caloriesGoal.toFloat(),
+                title = stringResource(R.string.stats_calories_burned),
+                valueText = stringResource(
+                    R.string.format_progress,
+                    uiState.caloriesBurned,
+                    uiState.caloriesGoal
+                ),
+                progress = if (uiState.caloriesGoal == 0) 0f else uiState.caloriesBurned.toFloat() / uiState.caloriesGoal,
                 modifier = Modifier.weight(1f)
             )
         }

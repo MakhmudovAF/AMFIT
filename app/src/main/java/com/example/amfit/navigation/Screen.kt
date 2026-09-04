@@ -5,25 +5,26 @@ import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.amfit.R
 
 enum class Screen(
     val route: String,
-    val title: String,
+    val titleRes: Int,
     val icon: ImageVector
 ) {
     Home(
         route = "home",
-        title = "Home",
+        titleRes = R.string.nav_home,
         icon = Icons.Filled.Home
     ),
     Workout(
         route = "workout",
-        title = "Workout",
+        titleRes = R.string.nav_workout,
         icon = Icons.Filled.FitnessCenter
     ),
     Profile(
         route = "profile",
-        title = "Profile",
+        titleRes = R.string.nav_profile,
         icon = Icons.Filled.Person
     )
 }

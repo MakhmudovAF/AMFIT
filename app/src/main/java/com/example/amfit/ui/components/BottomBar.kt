@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.amfit.navigation.Screen
@@ -42,12 +43,12 @@ fun BottomBar(
                 icon = {
                     Icon(
                         imageVector = screen.icon,
-                        contentDescription = screen.title
+                        contentDescription = stringResource( screen.titleRes)
                     )
                 },
 
                 label = {
-                    Text(screen.title)
+                    Text(stringResource( screen.titleRes))
                 }
             )
         }

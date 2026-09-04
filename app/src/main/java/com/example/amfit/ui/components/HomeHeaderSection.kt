@@ -7,9 +7,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.amfit.R
 import com.example.amfit.ui.home.HomeUiState
 
 @Composable
@@ -21,12 +23,15 @@ fun HomeHeaderSection(
         modifier = modifier
     ) {
         Text(
-            text = "Good Morning, ${uiState.userName}!",
+            text = stringResource(
+                R.string.home_greeting,
+                uiState.userName
+            ),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.SemiBold
         )
         Text(
-            text = "Welcome to AMFIT app.",
+            text = stringResource(R.string.home_welcome),
             modifier = Modifier.padding(top = 8.dp),
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.SemiBold,
@@ -45,7 +50,7 @@ fun HomeHeaderSection(
                 .padding(vertical = 16.dp)
         )
         Text(
-            text = "Latest Workout",
+            text = stringResource(R.string.home_latest_workout),
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleMedium,

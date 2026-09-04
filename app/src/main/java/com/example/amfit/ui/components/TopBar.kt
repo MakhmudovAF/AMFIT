@@ -11,18 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.amfit.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    title: String,
+    title: Int,
     scrollBehavior: TopAppBarScrollBehavior
 ) {
     TopAppBar(
         title = {
             Text(
-                text = title,
+                text = stringResource(title),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.SemiBold
             )
@@ -35,7 +37,7 @@ fun TopBar(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Notifications,
-                    contentDescription = "Notifications"
+                    contentDescription = stringResource(R.string.action_notifications)
                 )
             }
             IconButton(
@@ -45,7 +47,7 @@ fun TopBar(
             ) {
                 Icon(
                     imageVector = Icons.Filled.MoreVert,
-                    contentDescription = "More options"
+                    contentDescription = stringResource(R.string.action_more)
                 )
             }
         },
