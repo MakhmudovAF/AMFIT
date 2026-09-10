@@ -26,16 +26,11 @@ fun HomeHeaderSection(
             text = stringResource(
                 R.string.home_greeting,
                 uiState.userName
-            ),
-            style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.SemiBold
+            )
         )
         Text(
             text = stringResource(R.string.home_welcome),
-            modifier = Modifier.padding(top = 8.dp),
-            style = MaterialTheme.typography.bodyLarge,
-            fontWeight = FontWeight.SemiBold,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            modifier = Modifier.padding(top = 8.dp)
         )
         HomeStats(
             uiState = uiState,
@@ -52,9 +47,7 @@ fun HomeHeaderSection(
         Text(
             text = stringResource(R.string.home_latest_workout),
             modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.SemiBold
+            textAlign = TextAlign.Center
         )
     }
 }

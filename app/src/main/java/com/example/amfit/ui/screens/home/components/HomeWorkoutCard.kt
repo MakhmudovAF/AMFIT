@@ -52,14 +52,9 @@ fun HomeWorkoutCard(
             ) {
                 Text(
                     text = finishedWorkout.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold
                 )
-
                 Text(
                     text = finishedWorkout.duration,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }

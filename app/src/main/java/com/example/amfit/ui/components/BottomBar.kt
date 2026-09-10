@@ -17,18 +17,14 @@ fun BottomBar(
     navController: NavHostController
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
-
     val currentRoute = backStackEntry?.destination?.route
 
     NavigationBar {
-
         Screen.entries.forEach { screen ->
-
             val selected = currentRoute == screen.route
 
             NavigationBarItem(
                 selected = selected,
-
                 onClick = {
                     navController.navigate(screen.route) {
                         popUpTo(Screen.Home.route) {
@@ -39,14 +35,12 @@ fun BottomBar(
                         restoreState = true
                     }
                 },
-
                 icon = {
                     Icon(
                         imageVector = screen.icon,
                         contentDescription = stringResource( screen.titleRes)
                     )
                 },
-
                 label = {
                     Text(stringResource( screen.titleRes))
                 }

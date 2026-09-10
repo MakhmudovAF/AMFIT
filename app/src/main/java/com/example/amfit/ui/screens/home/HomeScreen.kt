@@ -17,14 +17,15 @@ import com.example.amfit.ui.screens.home.components.HomeWorkoutCard
 
 @Composable
 fun HomeScreen(
+    innerPadding: PaddingValues,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     LazyColumn(
-        modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
+        modifier = modifier,
+        contentPadding = innerPadding,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item {
@@ -37,7 +38,6 @@ fun HomeScreen(
             items = uiState.finishedWorkouts,
             key = { workout -> workout.id }
         ) { workout ->
-
             HomeWorkoutCard(
                 finishedWorkout = workout,
                 modifier = Modifier.fillMaxWidth()

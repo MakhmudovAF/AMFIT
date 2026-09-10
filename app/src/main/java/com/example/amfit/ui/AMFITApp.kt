@@ -1,5 +1,7 @@
 package com.example.amfit.ui
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -9,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -38,28 +41,41 @@ fun AMFITApp() {
         topBar = {
             TopBar(
                 title = currentScreen.titleRes,
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
+                actions = currentScreen.actions
             )
         },
         bottomBar = {
             BottomBar(
                 navController = navController
             )
-        }
+        },
+        contentWindowInsets = WindowInsets.displayCutout
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Home.route,
-            modifier = Modifier.padding(innerPadding)
+            startDestination = Screen.Home.route
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    innerPadding = innerPadding,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 16.dp)
+                )
             }
             composable(Screen.Workout.route) {
-                WorkoutScreen()
+                WorkoutScreen(
+                    innerPadding = innerPadding,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 16.dp)
+                )
             }
             composable(Screen.Profile.route) {
-                ProfileScreen()
+                ProfileScreen(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp))
             }
         }
     }

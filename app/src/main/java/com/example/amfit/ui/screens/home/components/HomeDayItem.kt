@@ -61,7 +61,6 @@ fun HomeDayItem(
         ) {
             Text(
                 text = day.letter,
-                fontWeight = FontWeight.Medium,
                 color = when {
                     day.isCompleted ->
                         MaterialTheme.colorScheme.onPrimary

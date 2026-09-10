@@ -44,13 +44,13 @@ fun HomeStats(
                 modifier = Modifier.weight(1f)
             )
             HomeStatsIndicator(
-                title = stringResource(R.string.stats_workout_days),
+                title = stringResource(R.string.stats_week_streak),
                 valueText = stringResource(
                     R.string.format_progress,
-                    uiState.workoutDays,
-                    uiState.workoutDaysGoal
+                    uiState.weekStreak,
+                    uiState.weekStreakGoal
                 ),
-                progress = if (uiState.workoutDaysGoal == 0) 0f else uiState.workoutDays.toFloat() / uiState.workoutDaysGoal,
+                progress = if (uiState.weekStreakGoal == 0) 0f else uiState.weekStreak.toFloat() / uiState.weekStreakGoal,
                 modifier = Modifier.weight(1f)
             )
             HomeStatsIndicator(
@@ -87,14 +87,11 @@ private fun HomeStatsIndicator(
         Text(
             text = valueText,
             modifier = Modifier.padding(top = 8.dp),
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.SemiBold
+            textAlign = TextAlign.Center
         )
         Text(
             text = title,
             modifier = Modifier.padding(top = 4.dp),
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
         )
     }

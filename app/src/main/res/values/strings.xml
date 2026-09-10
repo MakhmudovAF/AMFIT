@@ -14,13 +14,13 @@
 
     <!-- Home -->
     <string name="home_greeting">Good Morning, %1$s!</string>
-    <string name="home_welcome">Welcome to AMFIT app.</string>
+    <string name="home_welcome">Welcome to AMFIT app</string>
     <string name="home_latest_workout">Latest Workout</string>
     <string name="home_your_week">Your Week</string>
 
     <!-- Stats -->
     <string name="stats_daily_steps">Daily Steps</string>
-    <string name="stats_workout_days">Workout Days</string>
+    <string name="stats_week_streak">Week Streak</string>
     <string name="stats_calories_burned">Calories Burned</string>
 
     <!-- Formats -->
