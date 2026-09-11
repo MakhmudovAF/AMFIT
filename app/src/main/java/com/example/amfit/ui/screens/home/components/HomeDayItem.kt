@@ -61,6 +61,7 @@ fun HomeDayItem(
         ) {
             Text(
                 text = day.letter,
+                style = MaterialTheme.typography.bodyMedium,
                 color = when {
                     day.isCompleted ->
                         MaterialTheme.colorScheme.onPrimary

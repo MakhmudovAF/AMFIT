@@ -87,11 +87,15 @@ private fun HomeStatsIndicator(
         Text(
             text = valueText,
             modifier = Modifier.padding(top = 8.dp),
+            style = MaterialTheme.typography.bodyLarge,
+            fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
         Text(
             text = title,
             modifier = Modifier.padding(top = 4.dp),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
         )
     }

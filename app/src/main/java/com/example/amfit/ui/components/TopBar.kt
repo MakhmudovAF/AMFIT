@@ -8,6 +8,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import com.example.amfit.data.TopBarAction
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -19,7 +20,7 @@ fun TopBar(
 ) {
     TopAppBar(
         title = {
-            Text(text = stringResource(title))
+            Text(text = stringResource(title), fontWeight = FontWeight.Bold)
         },
         actions = {
             actions.forEach { action ->

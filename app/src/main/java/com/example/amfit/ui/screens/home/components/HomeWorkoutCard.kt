@@ -52,9 +52,12 @@ fun HomeWorkoutCard(
             ) {
                 Text(
                     text = finishedWorkout.title,
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = finishedWorkout.duration,
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
         }

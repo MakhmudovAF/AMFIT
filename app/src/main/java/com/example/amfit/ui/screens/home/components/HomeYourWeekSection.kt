@@ -27,6 +27,8 @@ fun HomeYourWeekSection(
     ) {
         Text(
             text = stringResource(R.string.home_your_week),
+            style = MaterialTheme.typography.headlineSmall,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Row(
